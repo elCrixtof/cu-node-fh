@@ -1,5 +1,5 @@
 const saludar = (nombre) => {
-    return `Saludos, ${nombre}`;
+    return `Greetings, ${nombre}`;
 };
 
 console.log(saludar('Soriano'));

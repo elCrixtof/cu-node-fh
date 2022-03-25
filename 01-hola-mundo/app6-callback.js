@@ -14,7 +14,7 @@ const getUserID = (id, callback) => {
     setTimeout(() => {
         callback(user);
     }, 1000)
-}
+};
 
 getUserID(1234, ({name, id}) => {
     console.log(`Name: ${name.toUpperCase()} ID: ${id}`);

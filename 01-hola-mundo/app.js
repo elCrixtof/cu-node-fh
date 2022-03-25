@@ -6,4 +6,4 @@ console.log(nombre1);
 
 console.log('hello, motherfuckers!');
 
-console.log('Estoy andando dentro de nodemon');
+console.log(`I'm going into nodemon`);

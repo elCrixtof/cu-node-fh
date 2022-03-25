@@ -50,20 +50,13 @@ const getSalary = (id) => {
     });
 };
 
-const id = 2;
-
-// getEmployee(id)
-//     .then(employee => console.log(employee))
-//     .catch( err => console.log(err))
-
-// getSalary(id)
-//     .then(salary => console.log(salary))
-//     .catch(err => console.log(err))
+const id = 3;
+let name;
 
 getEmployee(id)
     .then(employee => {
-        getSalary(id)
-            .then(salary => console.log('The employee', employee, 'has a salary of', salary))
-            .catch(err => console.log(err));
+        name = employee;
+        return getSalary(id)
     })
+    .then(salary => console.log('The employee', name, 'has a salary of', salary))
     .catch(err => console.log(err));

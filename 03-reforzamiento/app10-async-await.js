@@ -50,20 +50,24 @@ const getSalary = (id) => {
     });
 };
 
-const id = 2;
+const id = 1;
 
-// getEmployee(id)
-//     .then(employee => console.log(employee))
-//     .catch( err => console.log(err))
+const getInfoUser = async(id) => {
+    try {
+        const employee = await getEmployee(id);
+        const salary = await getSalary(id);
+        return `The employee ${employee} has a salary of ${salary}`;
+    } catch (err) {
+        throw err;
+    }
+}
 
-// getSalary(id)
-//     .then(salary => console.log(salary))
-//     .catch(err => console.log(err))
-
-getEmployee(id)
-    .then(employee => {
-        getSalary(id)
-            .then(salary => console.log('The employee', employee, 'has a salary of', salary))
-            .catch(err => console.log(err));
+getInfoUser(id)
+    .then(msg => {
+        console.log(`It's ok`);
+        console.log(msg)
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+        console.log(`It's wrong`);
+        console.log(err);
+    });

@@ -1,9 +1,15 @@
 const {buildTableFile} = require('./helpers/multiplication')
+const argv = require('yargs').argv;
 
 console.clear();
 
-let base = 3;
+console.log(process.argv);
+console.log(argv);
+console.log(argv.base);
 
-buildTableFile(base)
-    .then(fileName => console.log(`The file table-${fileName}.txt has been created`))
-    .catch(console.log)
+// const [, , arg3 = 'base=5'] = process.argv;
+// const [, base = 5] = arg3.split('=');
+
+// buildTableFile(base)
+//     .then(fileName => console.log(`The file table-${fileName}.txt has been created`))
+//     .catch(console.log)

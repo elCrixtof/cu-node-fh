@@ -5,6 +5,12 @@ const argv = require('yargs')
         demandOption: true,
         describe: `It's the base of multiplication table`
     })
+    .option('t', {
+        alias: 'to',
+        type: 'number',
+        default: 10,
+        describe: `It defines the table's range`
+    })
     .option('l', {
         alias: 'listing',
         type: 'boolean',

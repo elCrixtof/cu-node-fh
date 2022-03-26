@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-/*const buildTableFile = async(base = 5) => {
+const buildTableFile = async(base = 5) => {
     try {
         console.log('=====================');
         console.log('    Table of', base);
@@ -21,9 +21,9 @@ const fs = require('fs')
         throw error;
     }
     
-}*/
+}
 
-const buildTableFile = (base = 5) => {
+/*const buildTableFile = (base = 5) => {
     return new Promise((resolve, reject) => {
         console.log('=====================');
         console.log('    Table of', base);
@@ -40,9 +40,7 @@ const buildTableFile = (base = 5) => {
         // })
         resolve(`table-${base}.txt`);
     });
-    
-    
-}
+}*/
 
 module.exports =  {
     buildTableFile

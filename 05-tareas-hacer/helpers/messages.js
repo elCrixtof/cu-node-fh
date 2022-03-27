@@ -7,13 +7,13 @@ const showMenu = () => {
         console.log('  Choose an option'.green);
         console.log('=====================\n'.green);
 
-        console.log(`${'1.'.green} Create new todo`);
+        console.log(`${'1.'.green} Add a task`);
         console.log(`${'2.'.green} Todo list`);
-        console.log(`${'3.'.green} Todo List complete`);
-        console.log(`${'4.'.green} Todo list to do `);
-        console.log(`${'5.'.green} To complete todo`);
-        console.log(`${'6.'.green} Delete todo`);
-        console.log(`${'0.'.green} Go out\n`);
+        console.log(`${'3.'.green} Todo list mark as complete`);
+        console.log(`${'4.'.green} Todo list mark as pending`);
+        console.log(`${'5.'.green} Mark a todo(tasks) as complete`);
+        console.log(`${'6.'.green} Delete task`);
+        console.log(`${'0.'.green} Quit\n`);
 
         const readline = require('readline').createInterface({
             input: process.stdin,

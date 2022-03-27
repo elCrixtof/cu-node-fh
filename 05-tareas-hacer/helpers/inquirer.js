@@ -9,7 +9,7 @@ const menuOpts = [
         choices: [
             {
                 value: '1',
-                name: `${'1.'.green} Create new todo`,
+                name: `${'1.'.green} Add a task`,
             },
             {
                 value: '2',
@@ -17,23 +17,23 @@ const menuOpts = [
             },
             {
                 value: '3',
-                name: `${'3.'.green} Todo List complete`,
+                name: `${'3.'.green} Todo list mark as complete`,
             },
             {
                 value: '4',
-                name: `${'4.'.green} Todo list to do `,
+                name: `${'4.'.green} Todo list mark as pending`,
             },
             {
                 value: '5',
-                name: `${'5.'.green} To complete todo`,
+                name: `${'5.'.green} Mark a todo(tasks) as complete`,
             },
             {
                 value: '6',
-                name: `${'6.'.green} Delete todo`,
+                name: `${'6.'.green} Delete task`,
             },
             {
                 value: '0',
-                name: `${'0.'.green} Go out\n`,
+                name: `${'0.'.green} Quit\n`,
             },
         ]
     }

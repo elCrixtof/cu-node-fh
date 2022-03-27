@@ -1,14 +1,8 @@
 require('colors');
 const inquirer = require('inquirer');
 
-const inquirerMenu = () => {
-    console.clear();
-    console.log('====================='.green);
-    console.log('  Choose an option'.green);
-    console.log('=====================\n'.green);
-
-    await inquirer.
-    prompt([{
+const menuOpts = [
+    {
         type: 'list',
         name: 'Main',
         message: 'Choose an option',
@@ -21,12 +15,23 @@ const inquirerMenu = () => {
             `${'6.'.green} Delete todo`,
             `${'0.'.green} Go out\n`,
         ]
-    }])
-    .then((answer) => {
-        console.log({answer});
-    })
-    .catch(err => console.log(err));
+    }
+]
 
+const inquirerMenu = async() => {
+    console.clear();
+    console.log('====================='.green);
+    console.log('  Choose an option'.green);
+    console.log('=====================\n'.green);
+
+    const opt = await inquirer
+                        .prompt(menuOpts)
+                        .then((answer) => {
+                            console.log({answer});
+                        })
+                        .catch(err => console.log(err));
+
+    return opt;
 }
 
 module.exports = {

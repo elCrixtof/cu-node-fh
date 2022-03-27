@@ -39,6 +39,14 @@ const menuOpts = [
     }
 ]
 
+const pause = [
+    {
+        type: 'input',
+        name: 'enter',
+        message: 'Push ' + 'Enter '.green + 'to continue'
+    }
+]
+
 const inquirerMenu = async() => {
     console.clear();
     console.log('====================='.green);
@@ -55,8 +63,11 @@ const inquirerMenu = async() => {
     return opt;
 };
 
-
+const stop = async() => {
+    const {opt} = await inquirer.prompt(pause);
+};
 
 module.exports = {
-    inquirerMenu
+    inquirerMenu,
+    stop
 }

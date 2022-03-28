@@ -1,6 +1,5 @@
 require('colors');
 const inquirer = require('inquirer');
-const Todo = require('../models/todo');
 
 const menuOpts = [
     {
@@ -34,8 +33,8 @@ const menuOpts = [
             },
             {
                 value: '0',
-                name: `${'0.'.green} Quit\n`,
-            },
+                name: `${'0.'.green} Quit`,
+            }
         ]
     }
 ]
@@ -45,17 +44,6 @@ const pause = [
         type: 'input',
         name: 'enter',
         message: 'Push ' + 'Enter '.green + 'to continue',
-    }
-]
-
-const newTodo = [
-    {
-        type: 'input',
-        name: 'salida',
-        message: 'Write new todo to'.green,
-        resultado (answer) {
-            return answer
-        }
     }
 ]
 
@@ -80,14 +68,28 @@ const stop = async() => {
     return enter;
 };
 
-const inNewTodo = async() => {
-    console.clear();
-    const {salida} = await inquirer.prompt(newTodo);
-    return salida;
+const readInput = async(message) => {
+    const inputSet = [
+        {
+            type: 'input',
+            name: 'input',
+            message,
+            validate(value) {
+                if(value.length === 0) {
+                    return 'Please, set a value';
+                }
+                return true;
+            }
+        }
+    ]
+
+    // console.clear();
+    const {input} = await inquirer.prompt(inputSet);
+    return input;
 }
 
 module.exports = {
     inquirerMenu,
     stop,
-    inNewTodo
+    readInput
 }

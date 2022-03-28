@@ -1,10 +1,10 @@
 require('colors');
-const {inquirerMenu, stop, inNewTodo} = require('./helpers/inquirer');
-const Todo = require('./models/todo');
+const {
+    inquirerMenu, 
+    stop, 
+    readInput
+} = require('./helpers/inquirer');
 const Todos = require('./models/todos');
-
-
-console.clear();
 
 const main = async() => {
 
@@ -13,22 +13,21 @@ const main = async() => {
 
     do {
         opt = await inquirerMenu();
-        console.log('\n');
-        // todos._list[todo.id] = todo;
-        // console.log(opt);
+        if (opt !== '0') {
+            console.log('\n');
+        }
+
         switch(opt) {
             case '1':
-                const input = await inNewTodo();
-                console.log({input});
-                const todo = new Todo(input);  
-                todos._list[todo.id] = todo;     
-                console.log(todos);   
-                await stop();
+                const input = await readInput('Set description for task:');
+                todos.createTodo(input);
                 break; 
-            default: 
-                // console.log(`There isn't an option ${opt}`);
+            case '2':
+                console.log(todos);   
+                break;
         }
-        // await stop();
+
+        await stop();
     } while (opt !== '0');
 };
 

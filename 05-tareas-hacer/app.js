@@ -3,7 +3,8 @@ const {
     inquirerMenu, 
     stop, 
     readInput,
-    deleteMenu
+    deleteMenu,
+    confirm
 } = require('./helpers/inquirer');
 const {
     saveDB,
@@ -45,7 +46,13 @@ const main = async() => {
                 break;
             case '6':
                 const id = await deleteMenu(todos.listArr);
-                console.log(id);
+                if(id !== '0'){
+                    const ok = await confirm('Are you sure?');
+                    if(ok) {
+                        todos.deleteTask(id);
+                        console.log('Task correctly deleted');
+                    }
+                }
                 break;
         }
 

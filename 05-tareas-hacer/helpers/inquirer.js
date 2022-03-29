@@ -109,6 +109,11 @@ const deleteMenu = async(todos) => {
             choices
         }
     ]
+
+    choices.unshift({
+        value: '0',
+        name: '0.'.green + ' Cancelar'
+    })
     
     // console.log(choices);
     const {deleteOpt} = await inquirer.prompt(deleteOpts);
@@ -116,9 +121,23 @@ const deleteMenu = async(todos) => {
     return deleteOpt; 
 }
 
+const confirm = async(message) => {
+    const question = [
+        {
+            type: 'confirm',
+            name: 'ok',
+            message
+        }
+    ]
+
+    const {ok} = await inquirer.prompt(question);
+    return ok;
+};
+
 module.exports = {
     inquirerMenu,
     stop,
     readInput,
-    deleteMenu
+    deleteMenu,
+    confirm
 }

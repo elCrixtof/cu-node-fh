@@ -32,7 +32,15 @@ const main = async() => {
                 todos.createTodo(input);
                 break; 
             case '2':
-                console.log(todos.listArr);
+                todos.AllList();
+                break;
+            case '3':
+                todos.completeList();
+                break;
+            case '4':
+                todos.pendingList();
+                break;
+            case '5':
                 break;
         }
 

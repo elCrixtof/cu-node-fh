@@ -35,6 +35,35 @@ class Todos {
             this._list[todo.id] = todo;
         });
     }
+
+    AllList () {
+        const list = this.listArr;
+        for (let i in list) {
+            console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
+        }
+    }
+
+    completeList() {
+        const list = this.listArr;
+
+        for (let i in list) {
+            if(list[i].dateCompleted !== null){
+                console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
+            }
+        }
+    }
+
+    pendingList() {
+        const list = this.listArr;
+
+        for (let i in list) {
+            if(list[i].dateCompleted === null){
+                console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
+            }
+        }
+    }
+
+
 }
 
 module.exports = Todos;

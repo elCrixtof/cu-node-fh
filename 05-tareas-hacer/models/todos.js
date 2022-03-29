@@ -26,6 +26,15 @@ class Todos {
         const todo = new Todo(desc);
         this._list[todo.id] = todo;
     }
+
+    readData (data) {
+        data.forEach((element) => {
+            const todo = new Todo(element.desc);
+            todo.desc = element.desc
+            todo.dateCompleted = element.dateCompleted
+            this._list[todo.id] = todo;
+        });
+    }
 }
 
 module.exports = Todos;

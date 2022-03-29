@@ -4,17 +4,21 @@ const {
     stop, 
     readInput
 } = require('./helpers/inquirer');
+const {
+    saveDB,
+    readDB
+} = require('./helpers/saveFile')
 const Todos = require('./models/todos');
-const {saveDB} = require('./helpers/saveFile')
 
 const main = async() => {
 
     let opt = '';
     const todos = new Todos();
 
-    // if(!fs.existsSync('./db/todo-list.txt')) {
-
-    // }
+    const data = readDB();
+    if(data) {
+        todos.readData(data);
+    }
 
     do {
         opt = await inquirerMenu();

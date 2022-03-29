@@ -4,7 +4,8 @@ const {
     stop, 
     readInput,
     deleteMenu,
-    confirm
+    confirm,
+    showChecklistMenu
 } = require('./helpers/inquirer');
 const {
     saveDB,
@@ -43,6 +44,8 @@ const main = async() => {
                 todos.completedTasksList(false);
                 break;
             case '5':
+                const ids = await showChecklistMenu(todos.listArr);
+                console.log(ids);
                 break;
             case '6':
                 const id = await deleteMenu(todos.listArr);

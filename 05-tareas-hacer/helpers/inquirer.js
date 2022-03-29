@@ -101,6 +101,11 @@ const deleteMenu = async(todos) => {
         }
     });
 
+    choices.unshift({
+        value: '0',
+        name: '0.'.green + ' Cancelar'
+    });
+
     const deleteOpts = [
         {
             type: 'list',
@@ -109,17 +114,38 @@ const deleteMenu = async(todos) => {
             choices
         }
     ]
-
-    choices.unshift({
-        value: '0',
-        name: '0.'.green + ' Cancelar'
-    })
     
     // console.log(choices);
     const {deleteOpt} = await inquirer.prompt(deleteOpts);
 
     return deleteOpt; 
-}
+};
+
+const showChecklistMenu = async(todos) => {
+    const choices = todos.map((todo, i) => {
+        const idx = `${i+1}.`.green;
+        return {
+            value: todo.id,
+            name: `${idx} ${todo.desc}`,
+            checked: (todo.dateCompleted) ? true : false
+        }
+    });
+
+    const checkOpts = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Choose tasks',
+            choices
+        }
+    ]
+    
+    // console.log(choices);
+    const {ids} = await inquirer.prompt(checkOpts);
+
+    return ids; 
+};
+
 
 const confirm = async(message) => {
     const question = [
@@ -139,5 +165,6 @@ module.exports = {
     stop,
     readInput,
     deleteMenu,
-    confirm
+    confirm,
+    showChecklistMenu
 }

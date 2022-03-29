@@ -37,33 +37,36 @@ class Todos {
     }
 
     AllList () {
-        const list = this.listArr;
-        for (let i in list) {
-            console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
-        }
+        this.listArr.forEach((todo, i) => {
+            const idx = `${i+1}.`.green;
+            const {desc, dateCompleted} = todo;
+            const status = ( dateCompleted ) 
+                                ? 'Completed'.green
+                                : 'Pending'.red 
+
+            console.log(`${idx} ${desc}\t :: ${status}`);
+        })
     }
 
-    completeList() {
-        const list = this.listArr;
+    completedTasksList(completed = true) {
+        let count = 0;
+        this.listArr.forEach((todo) => {
+            const {desc, dateCompleted} = todo;
+            const status = ( dateCompleted ) 
+                            ? 'Completed'.green
+                            : 'Pending'.red 
 
-        for (let i in list) {
-            if(list[i].dateCompleted !== null){
-                console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
+            if(completed && todo.dateCompleted !== null){
+                count += 1;
+                console.log(`${count}.`.green +` ${desc} :: ${dateCompleted}`);
             }
-        }
-    }
 
-    pendingList() {
-        const list = this.listArr;
-
-        for (let i in list) {
-            if(list[i].dateCompleted === null){
-                console.log(`${i}.\t`.green + `${list[i].desc}\t` + `${list[i].dateCompleted === null ? 'Pending'.red : 'Completed'.green }` + '\n');
+            if(!completed && todo.dateCompleted === null) {
+                count += 1;
+                console.log(`${count}.`.green +` ${desc} :: ${status}`);
             }
-        }
+        })
     }
-
-
 }
 
 module.exports = Todos;

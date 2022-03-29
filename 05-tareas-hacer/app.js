@@ -35,10 +35,10 @@ const main = async() => {
                 todos.AllList();
                 break;
             case '3':
-                todos.completeList();
+                todos.completedTasksList();
                 break;
             case '4':
-                todos.pendingList();
+                todos.completedTasksList(false);
                 break;
             case '5':
                 break;

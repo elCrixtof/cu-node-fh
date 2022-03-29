@@ -27,7 +27,7 @@ class Todos {
         this._list[todo.id] = todo;
     }
 
-    readData (data) {
+    loadData (data = []) {
         data.forEach((element) => {
             const todo = new Todo(element.desc);
             todo.desc = element.desc

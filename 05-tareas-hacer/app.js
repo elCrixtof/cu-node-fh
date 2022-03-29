@@ -17,7 +17,7 @@ const main = async() => {
 
     const data = readDB();
     if(data) {
-        todos.readData(data);
+        todos.loadData(data);
     }
 
     do {

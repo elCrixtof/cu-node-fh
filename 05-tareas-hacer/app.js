@@ -45,6 +45,7 @@ const main = async() => {
                 break;
             case '6':
                 const id = await deleteMenu(todos.listArr);
+                console.log(id);
                 break;
         }
 

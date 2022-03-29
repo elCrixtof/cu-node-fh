@@ -2,7 +2,8 @@ require('colors');
 const {
     inquirerMenu, 
     stop, 
-    readInput
+    readInput,
+    deleteMenu
 } = require('./helpers/inquirer');
 const {
     saveDB,
@@ -41,6 +42,9 @@ const main = async() => {
                 todos.completedTasksList(false);
                 break;
             case '5':
+                break;
+            case '6':
+                const id = await deleteMenu(todos.listArr);
                 break;
         }
 

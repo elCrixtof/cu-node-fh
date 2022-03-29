@@ -47,6 +47,15 @@ const pause = [
     }
 ]
 
+const deleteOpts = [
+    {
+        type: 'list',
+        name: 'deleteOpt',
+        message: 'Choose a task to delete',
+        choices: []
+    }
+]
+
 const inquirerMenu = async() => {
     console.clear();
     console.log('==============================='.green);
@@ -88,8 +97,30 @@ const readInput = async(message) => {
     return input;
 }
 
+const deleteMenu = async(todos) => {
+    // {
+    //     value: '1',
+    //     name: `${'1.'.green} Add a task`,
+    // },
+    const choices = []
+    todos.forEach((todo, i) => {
+        let aux = {};
+        aux.value = i+1;
+        // const idx = `${i+1}.`.green
+        // aux.name = `${idx} ${todo.desc}`
+        aux.name = `${i+1}.`.green + ` ${todo.desc}`
+        choices.push(aux); 
+    });
+    // console.log(choices);
+    deleteOpts[0].choices = choices;
+    const {deleteOpt} = await inquirer.prompt(deleteOpts);
+
+    return deleteOpt;
+}
+
 module.exports = {
     inquirerMenu,
     stop,
-    readInput
+    readInput,
+    deleteMenu
 }

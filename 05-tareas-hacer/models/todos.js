@@ -58,7 +58,7 @@ class Todos {
 
             if(completed && todo.dateCompleted !== null){
                 count += 1;
-                console.log(`${count}.`.green +` ${desc} :: ${dateCompleted}`);
+                console.log(`${count}.`.green +` ${desc} :: ${dateCompleted.green}`);
             }
 
             if(!completed && todo.dateCompleted === null) {
@@ -72,6 +72,21 @@ class Todos {
         if(this._list[id]){
             delete this._list[id];
         }
+    }
+
+    toggleCompleted(ids = []){
+        ids.forEach(id => {
+            const todo = this._list[id];
+            if(!todo.dateCompleted){
+                todo.dateCompleted = new Date().toISOString();
+            }
+        });
+        
+        this.listArr.forEach((todo) => {
+            if(!ids.includes(todo.id)) {
+                this._list[todo.id].dateCompleted = null;
+            }
+        });
     }
 }
 

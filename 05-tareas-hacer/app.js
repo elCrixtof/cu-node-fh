@@ -45,6 +45,7 @@ const main = async() => {
                 break;
             case '5':
                 const ids = await showChecklistMenu(todos.listArr);
+                todos.toggleCompleted(ids);
                 console.log(ids);
                 break;
             case '6':

@@ -5,11 +5,16 @@ const {
     readInput
 } = require('./helpers/inquirer');
 const Todos = require('./models/todos');
+const {saveDB} = require('./helpers/saveFile')
 
 const main = async() => {
 
     let opt = '';
     const todos = new Todos();
+
+    // if(!fs.existsSync('./db/todo-list.txt')) {
+
+    // }
 
     do {
         opt = await inquirerMenu();
@@ -23,12 +28,14 @@ const main = async() => {
                 todos.createTodo(input);
                 break; 
             case '2':
-                console.log(todos);   
+                console.log(todos.listArr);
                 break;
         }
 
         await stop();
     } while (opt !== '0');
+
+    saveDB(todos.listArr);
 };
 
 main();

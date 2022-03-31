@@ -43,7 +43,6 @@ const main = async () => {
                 console.log('Maximum:', weather.max);
                 break;
             case 2:
-                console.log(searches.upperCaseHistory);
                 searches.upperCaseHistory.forEach((element, i) => {
                     console.log(`${i+1}.`.green + ` ${element}`.green);
                 })

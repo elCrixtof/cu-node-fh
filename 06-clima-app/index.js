@@ -26,17 +26,18 @@ const main = async () => {
                 const places = await searches.city(placeToSeek);
                 //Show searches
                 const placeSelected = await placesMenu(places);
-                console.log(placeSelected);
+                const weather = await searches.weather(placeSelected.latitude, placeSelected.longitude);
                 //Select place
                 //Clima data
                 //Show results
                 console.log('\nPlace information\n'.green);
-                console.log('City:', placeSelected.name);
+                console.log('City:', placeSelected.name.green);
                 console.log('Latitude:', placeSelected.latitude);
                 console.log('Longitude:', placeSelected.longitude);
-                console.log('Temperature:',);
-                console.log('Minimum:',);
-                console.log('Maximum:',);
+                console.log('Description:', weather.desc.yellow);
+                console.log('Temperature:', weather.temp);
+                console.log('Minimum:', weather.min);
+                console.log('Maximum:', weather.max);
                 break;
             case 2:
                 break;

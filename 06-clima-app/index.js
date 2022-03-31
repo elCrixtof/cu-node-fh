@@ -1,4 +1,4 @@
-require('colors');
+require('dotenv').config();
 
 const {
     readInput, 
@@ -7,6 +7,7 @@ const {
 } = require('./helpers/inquirer');
 const Searches = require('./models/searches');
 
+// console.log(process.env);
 
 const main = async () => {
     

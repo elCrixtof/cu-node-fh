@@ -25,23 +25,28 @@ const main = async () => {
                 const placeToSeek = await readInput('City:');
                 const places = await searches.city(placeToSeek);
                 //Show searches
-                const placeSelected = await placesMenu(places);
-                const weather = await searches.weather(placeSelected.latitude, placeSelected.longitude);
                 //Select place
-                //Clima data
+                const placeSelected = await placesMenu(places);
+                if (placeSelected === '0') continue
+                //Save on DB
+                searches.addHistory(placeSelected.name);
+                const weather = await searches.weather(placeSelected.latitude, placeSelected.longitude);
                 //Show results
                 console.log('\nPlace information\n'.green);
                 console.log('City:', placeSelected.name.green);
                 console.log('Latitude:', placeSelected.latitude);
                 console.log('Longitude:', placeSelected.longitude);
+                //Clima data
                 console.log('Description:', weather.desc.yellow);
                 console.log('Temperature:', weather.temp);
                 console.log('Minimum:', weather.min);
                 console.log('Maximum:', weather.max);
                 break;
             case 2:
-                break;
-            case 3: 
+                console.log(searches.upperCaseHistory);
+                searches.upperCaseHistory.forEach((element, i) => {
+                    console.log(`${i+1}.`.green + ` ${element}`.green);
+                })
                 break;
         }
         if ( choice !== 0 ) await stop();

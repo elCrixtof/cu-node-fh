@@ -1,11 +1,13 @@
 const axios = require('axios');
+const fs = require('fs');
 
 class Searches {
     history = ['Tegucigalpa', 'Madrid', 'San José'];
+    filepath =  `./db/places-list.json`;
 
     constructor() {
         //TODO: read DB if exists
-
+        this.readDB();
     }
 
     get paramsMapbox() {
@@ -22,6 +24,10 @@ class Searches {
             units: 'metric',
             lang: 'en'
         }
+    }
+
+    get upperCaseHistory () {
+        return this.history.map(e => e.toLocaleUpperCase());
     }
 
     async city ( place = ''  ) {
@@ -68,6 +74,38 @@ class Searches {
         }
     }
 
+    addHistory (place = '') {
+        //TODO: prevenir duplicados
+        if(this.history.includes( place.toLocaleLowerCase() )) {
+            return;
+        }
+
+        this.history = this.history.splice(0,5)
+
+        this.history.unshift(place.toLocaleLowerCase());
+        //Save in DB
+        this.saveDB();
+    }
+
+    saveDB () {
+        if (!fs.existsSync('./db')){
+            fs.mkdirSync('./db');
+        }
+
+        const payload = {
+            history: this.history
+        }
+    
+        fs.writeFileSync(this.filepath, JSON.stringify(payload));  
+    }
+
+    readDB = () => {
+        if(!fs.existsSync(this.filepath)) {
+            return null;
+        }
+        this.history = JSON.parse(fs.readFileSync(this.filepath, {encoding: 'utf-8'})).history;
+        
+    };
 }
 
 module.exports = Searches;

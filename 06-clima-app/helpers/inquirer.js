@@ -72,16 +72,16 @@ const readInput = async(message) => {
     return input;
 }
 
-const deleteMenu = async(todos) => {
+const placesMenu = async(places) => {
     // {
     //     value: '1',
     //     name: `${'1.'.green} Add a task`,
     // },
-    const choices = todos.map((todo, i) => {
+    const choices = places.map((place, i) => {
         const idx = `${i+1}.`.green;
         return {
-            value: todo.id,
-            name: `${idx} ${todo.desc}`
+            value: place,
+            name: `${idx} ${place.name}`
         }
     });
 
@@ -90,19 +90,19 @@ const deleteMenu = async(todos) => {
         name: '0.'.green + ' Cancelar'
     });
 
-    const deleteOpts = [
+    const selectPlaceOpts = [
         {
             type: 'list',
-            name: 'deleteOpt',
-            message: 'Choose a task to delete',
+            name: 'selectPlaceOpt',
+            message: 'Choose a place to show',
             choices
         }
     ]
     
     // console.log(choices);
-    const {deleteOpt} = await inquirer.prompt(deleteOpts);
+    const {selectPlaceOpt} = await inquirer.prompt(selectPlaceOpts);
 
-    return deleteOpt; 
+    return selectPlaceOpt; 
 };
 
 const showChecklistMenu = async(todos) => {
@@ -148,7 +148,7 @@ module.exports = {
     inquirerMenu,
     stop,
     readInput,
-    deleteMenu,
+    placesMenu,
     confirm,
     showChecklistMenu
 }

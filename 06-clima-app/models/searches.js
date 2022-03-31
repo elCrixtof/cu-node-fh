@@ -26,9 +26,14 @@ class Searches {
             });
 
             const resp = await instance.get();
-            console.log(resp.data);
+            return resp.data.features.map((element)=>({
+                    id: element.id,
+                    name: element.place_name_es,
+                    latitude: element.center[0],
+                    longitude: element.center[1]
+                
+            }));
 
-            return JSON.parse(resp.data);
 
         } catch (error) {
             return [];

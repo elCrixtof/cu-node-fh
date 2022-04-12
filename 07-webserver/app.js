@@ -1,24 +1,40 @@
 const express = require('express');
+var hbs = require('hbs');
+
+
 const app = express();
 const PORT = 8080; 
 
+// Handlebars
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 //Serve content
 app.use( express.static('public') );
 
+
+//Routes
 app.get('/', (req, res) => {
     res.render('home', {
-        name: 'Chris',
-        title: 'Node curse'
+        name: 'Fernando Herrera',
+        title: 'Node curse',
+        classNav: ''
     })
 })
 
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname + '/public/generic.html')
+    res.render('generic', {
+        name: 'Fernando Herrera',
+        title: 'Node curse',
+        classNav: 'alt'
+    })
 })
 
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname + '/public/elements.html')
+    res.render('elements', {
+        name: 'Fernando Herrera',
+        title: 'Node curse',
+        classNav: 'alt'
+    })
 })
 
 app.get('*', function (req, res) {

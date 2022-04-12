@@ -1,25 +1,15 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const PORT = 8080; 
 
-http.createServer((req, res) => {
-    // console.log(req.rawHeaders);
-    // console.log(req.url);
-    // res.writeHead(200, {'Content-Type': 'text/plain'})
-    res.setHeader('Content-Disposition', 'attachment; filename=lista.csv')
-    res.writeHead(200, {'Content-Type': 'application/csv'})
-    
-    const person = {
-        id: 1,
-        name: 'User1'
-    }
-    
-    // res.write(JSON.stringify(person));
-    res.write('id, nombre\n');
-    res.write('1, fernando\n');
-    res.write('2, chris\n');
-    res.write('3, test\n');
-
-    res.end();
+app.get('/', function (req, res) {
+    res.send('Home page');
 })
-.listen(8080);
 
-console.log('Listening at the port:', 8080);
+app.get('*', function (req, res) {
+    res.send('Page not found');
+})
+
+app.listen(PORT, () => {
+    console.log(`Listening at http://localhost:${PORT}`);
+});

@@ -6,6 +6,7 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+        this.usersPath = '/api/users';
 
         // Middlewares
         this.middlewares();
@@ -19,37 +20,10 @@ class Server {
         this.app.use(cors())
         // Public directory
         this.app.use(express.static('public'));
-        
     }
 
     routes () {
-        this.app.get('/test-path', (req, res) => {
-            res.json({
-                msg: 'get API'
-            })
-        });
-
-        this.app.put('/test-path', (req, res) => {
-            res.json({
-                msg: 'put API'
-            })
-        });
-
-        this.app.post('/test-path', (req, res) => {
-            res.json({
-                msg: 'post API'
-            })
-        });
-
-        this.app.delete('/test-path', (req, res) => {
-            res.json({
-                msg: 'delete API'
-            })
-        });
-
-        this.app.use('*', (req, res) => {
-            res.send('404 | page not found')
-        });
+        this.app.use(this.usersPath, require('../routes/users'));
     }
 
     listen () {

@@ -11,19 +11,23 @@ class Server {
         // Middlewares
         this.middlewares();
         // Routes 
-
         this.routes();
     }
 
     middlewares () {
         // CORS
         this.app.use(cors())
+        // Parseo y lectura del body
+        this.app.use(express.json());
         // Public directory
         this.app.use(express.static('public'));
     }
 
     routes () {
         this.app.use(this.usersPath, require('../routes/users'));
+        this.app.use('*', (req, res) => {
+            res.send('404 | page not found')
+        });
     }
 
     listen () {

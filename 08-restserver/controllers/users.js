@@ -1,20 +1,33 @@
-const { response }  = require('express')
+const { response, request }  = require('express')
 
-const usersGet =  (req, res = response) => {
+const usersGet =  (req = request, res = response) => {
+    const {q, name = 'no name', apikey, page = 1, limit} = req.query;
     res.json({
-        msg: 'get API'
+        msg: 'get API',
+        q,
+        name,
+        apikey,
+        page, 
+        limit
     })
 };
 
 const usersPut = (req, res) => {
+    const {id, date} = req.params
     res.json({
-        msg: 'put API'
+        msg: 'put API',
+        id,
+        date
     })
 };
 
 const usersPost = (req, res) => {
+    const {name , age} = req.body;
+
     res.json({
-        msg: 'post API'
+        msg: 'post API',
+        name,
+        age
     })
 };
 
@@ -23,8 +36,6 @@ const usersDelete = (req, res) => {
         msg: 'delete API'
     })
 };
-
-
 
 module.exports = {
     usersGet,

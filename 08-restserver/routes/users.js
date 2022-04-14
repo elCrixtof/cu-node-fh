@@ -10,14 +10,10 @@ const router = Router();
 
 router.get('/', usersGet);
 
-router.put('/', usersPut);
+router.put('/:id/:date', usersPut);
 
 router.post('/', usersPost);
 
 router.delete('/', usersDelete);
-
-router.use('*', (req, res) => {
-    res.send('404 | page not found')
-});
 
 module.exports = router;

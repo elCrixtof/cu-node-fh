@@ -14,9 +14,8 @@ const UserSchema = Schema ({
         type: String,
         required: [true, 'Password is required']
     },
-    mail: {
+    img: {
         type: String,
-        unique: true
     },
     role: {
         type: String,

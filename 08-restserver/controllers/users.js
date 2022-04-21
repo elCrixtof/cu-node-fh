@@ -32,7 +32,7 @@ const usersPost = async (req, res) => {
     const existEmail = await User.findOne({ mail });
     if(existEmail) {
         return res.status(400).json({
-            msg: 'Mail already exists'
+            msg: 'This mail already exists'
         })
     }
     //Encrypt password

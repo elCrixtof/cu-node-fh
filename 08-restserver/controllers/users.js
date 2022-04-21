@@ -1,6 +1,7 @@
 const { response, request }  = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('../models/user');
+const { findById, findByIdAndUpdate } = require('../models/user');
 
 const usersGet =  async (req = request, res = response) => {
     // const {q, name = 'no name', apikey, page = 1, limit} = req.query;
@@ -51,15 +52,15 @@ const usersPost = async (req, res) => {
     //Save in database
     await user.save();
 
-    res.json({
-        user
-    })
+    res.json(user)
 };
 
-const usersDelete = (req, res) => {
-    res.json({
-        msg: 'delete API'
-    })
+const usersDelete = async(req, res) => {
+    const {id} = req.params;
+    // Delete completely
+    // const user = await User.findByIdAndDelete(id);
+    const user = await User.findByIdAndUpdate(id, {state: false});
+    res.json(user)
 };
 
 module.exports = {

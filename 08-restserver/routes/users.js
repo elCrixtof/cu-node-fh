@@ -8,13 +8,22 @@ const {
     usersPost,
     usersDelete
 } = require('../controllers/users');
-const { isValidRole, mailValidation } = require('../helpers/db-validators')
+const { 
+    isValidRole, 
+    mailValidation,
+    userValidation
+} = require('../helpers/db-validators')
 
 const router = Router();
 
 router.get('/', usersGet);
 
-router.put('/:id/:date', usersPut);
+router.put('/:id', [
+    check('id', 'It is not a valid ID').isMongoId(),
+    check('id').custom(userValidation),
+    check('role').custom(isValidRole),
+    validateFields
+], usersPut);
 
 router.post('/', [
     check('password', 'The password must have more than 6 letters').isLength({min: 6}),

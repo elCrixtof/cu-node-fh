@@ -15,7 +15,15 @@ const mailValidation = async ( mail = '' ) => {
     }
 }
 
+const userValidation = async ( id ) => {
+    const existUser = await User.findById(id);
+    if(!existUser) {
+        throw new Error(`The user ${id} don't exists`);
+    }
+}
+
 module.exports = {
     isValidRole,
-    mailValidation
+    mailValidation,
+    userValidation
 }

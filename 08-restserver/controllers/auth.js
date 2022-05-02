@@ -34,6 +34,8 @@ const login = async (req = require, res = response) => {
 
         // Authenticate user and generate password
         const token = await generarJWT(user.id);
+
+        // console.log(user);
         
         res.json({
             user,

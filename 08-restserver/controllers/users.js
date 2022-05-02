@@ -57,10 +57,11 @@ const usersPost = async (req, res) => {
 
 const usersDelete = async(req, res) => {
     const {id} = req.params;
+    const uid = req.uid;
     // Delete completely
     // const user = await User.findByIdAndDelete(id);
     const user = await User.findByIdAndUpdate(id, {state: false});
-    res.json(user)
+    res.json({user, uid})
 };
 
 module.exports = {

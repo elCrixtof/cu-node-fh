@@ -13,6 +13,7 @@ const {
 
 const { 
     isValidRole, 
+    isAdminRole,
     mailValidation,
     existUserById
 } = require('../helpers/db-validators')

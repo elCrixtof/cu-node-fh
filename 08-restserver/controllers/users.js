@@ -56,12 +56,23 @@ const usersPost = async (req, res) => {
 };
 
 const usersDelete = async(req, res) => {
-    const {id} = req.params;
-    const uid = req.uid;
+    try {
+        const {id} = req.params;
+    // const uid = req.uid;
     // Delete completely
     // const user = await User.findByIdAndDelete(id);
-    const user = await User.findByIdAndUpdate(id, {state: false});
-    res.json({user, uid})
+    const AuthUser = req.user
+    if(AuthUser.role == 'ADMIN_ROLE') {
+        const user = await User.findByIdAndUpdate(id, {state: false});
+        res.json({user, AuthUser})
+    } else {
+        throw new Error(`Something is wrong - Role: 'ADMIN_ROLE'`)
+    }
+    } catch (error) {
+        res.status(401).json({
+            msg: error.message
+        })
+    }
 };
 
 module.exports = {

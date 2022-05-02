@@ -8,6 +8,13 @@ const isValidRole = async (role = '') => {
     }
 }
 
+const isAdminRole = async (role = '') => {
+    const roleExist = await Role.findOne({role});
+    if(!roleExist && roleExist != 'ADMIN_ROLE') {
+        throw new Error(`The role ${role} is not registred in DB`);
+    }
+}
+
 const mailValidation = async ( mail = '' ) => {
     const existEmail = await User.findOne({ mail });
     if(existEmail) {
@@ -24,6 +31,7 @@ const existUserById = async ( id ) => {
 
 module.exports = {
     isValidRole,
+    isAdminRole,
     mailValidation,
     existUserById
 }

@@ -13,10 +13,14 @@ const {
 
 const { 
     isValidRole, 
-    isAdminRole,
+    // isAdminRole,
     mailValidation,
     existUserById
 } = require('../helpers/db-validators')
+
+const {
+    isAdminRole
+} = require('../middlewares/validate-roles');
 
 
 const router = Router();
@@ -42,6 +46,7 @@ router.post('/', [
 
 router.delete('/:id', [
     validateJWT,
+    isAdminRole,
     check('id', 'It is not a valid ID').isMongoId(),
     check('id').custom(existUserById),
     validateFields

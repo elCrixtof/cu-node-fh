@@ -62,12 +62,8 @@ const usersDelete = async(req, res) => {
     // Delete completely
     // const user = await User.findByIdAndDelete(id);
     const AuthUser = req.user
-    if(AuthUser.role == 'ADMIN_ROLE') {
-        const user = await User.findByIdAndUpdate(id, {state: false});
-        res.json({user, AuthUser})
-    } else {
-        throw new Error(`Something is wrong - Role: 'ADMIN_ROLE'`)
-    }
+    const user = await User.findByIdAndUpdate(id, {state: false});
+    res.json({user, AuthUser})
     } catch (error) {
         res.status(401).json({
             msg: error.message
